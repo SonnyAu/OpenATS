@@ -80,8 +80,7 @@ jobs:
         working-directory: ./terraform
         run: terraform plan -var="environment=${{ github.event.inputs.environment || 'dev' }}"
 
-      # Uncomment when ready to deploy
-      # - name: Terraform Apply
-      #   working-directory: ./terraform
-      #   if: github.ref == 'refs/heads/main'
-      #   run: terraform apply -auto-approve -var="environment=${{ github.event.inputs.environment || 'dev' }}"
+      - name: Terraform Apply
+        working-directory: ./terraform
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve -var="environment=${{ github.event.inputs.environment || 'dev' }}"
